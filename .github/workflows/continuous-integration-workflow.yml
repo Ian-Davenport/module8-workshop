@@ -45,7 +45,7 @@ jobs:
 
   heroku:
     runs-on: ubuntu-latest
-    needs: dockerhub
+    needs: dockerpublish
     if: github.ref_name == 'main'
     steps:
       - uses: actions/checkout@v2
