@@ -25,3 +25,21 @@ jobs:
     - name: Typescript test
       run: npm run test
       working-directory: ./DotnetTemplate.Web
+
+  dockerpublish:
+    name: Docker Hub
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: docker build
+      run: docker build -t miraclemag1c/module8app .
+
+    - name: dockerhublogin
+      run: echo ${{secrets.DOCKERHUBTOKEN}} | docker login --username miraclemag1c --password-stdin
+
+    - name: push
+      run: docker push miraclemag1c/module8app
+
+  
